@@ -4,45 +4,199 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | FAQ accordion</title>
+  <title>FAQ accordion</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  
   <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+
+     html body{
+
+      /* height:100%;
+      width:100%; */
+      margin:0;
+      padding:0
+    }
+
+    *{
+
+      font-family: sans-serif;
+    }
+
+    #topImage{
+
+      height:40vh;
+      width:100vw;
+      border-color: brown;
+      border-width: 10px;
+      
+   }
+
+    .image{
+
+      width:100vw; height:100%;
+      object-fit: cover;
+    }
+
+   
+
+    #bottomDiv{
+
+      
+      height:60vh;
+      width:100vw;
+      background-color: hsl(292, 8%, 65%);
+
+  }
+
+  #accordian{
+
+    height:60vh;
+    width:40vw;
+    position:absolute;
+    background-color: rgb(206, 206, 226);
+    top:20%;
+    left:30%;
+    border-radius: 10px;
+    flex-direction: column;
+    padding:2%
+
+}
+
+#star-icon{
+
+  height: 100%;
+  width:10%
+}
+
+details{
+
+  font-size: 0.8rem;
+  padding:10px;
+  
+ 
+}
+
+details summary{
+
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 5px;
+  
+}
+
+summary img{
+
+  float:right
+}
+
+   
   </style>
 </head>
 <body>
 
-  FAQs
 
-  What is Frontend Mentor, and how will it help me?
 
-  Frontend Mentor offers realistic coding challenges to help developers improve their 
-  frontend coding skills with projects in HTML, CSS, and JavaScript. It's suitable for 
-  all levels and ideal for portfolio building.
-
-  Is Frontend Mentor free?
-
-  Yes, Frontend Mentor offers both free and premium coding challenges, with the free 
-  option providing access to a range of projects suitable for all skill levels.
-
-  Can I use Frontend Mentor projects in my portfolio?
-
-  Yes, you can use projects completed on Frontend Mentor in your portfolio. It's an excellent
-  way to showcase your skills to potential employers!
-
-  How can I get help if I'm stuck on a Frontend Mentor challenge?
-  
-  The best place to get help is inside Frontend Mentor's Discord community. There's a help 
-  channel where you can ask questions and seek support from other community members.
-
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+<div id="topImage">
+    <img class="image" src="./assets/images/background-pattern-desktop.svg" />
   </div>
+<div id="bottomDiv">
+</div>
+
+<div id="accordian"> 
+  <div style="height:100%;width:100%;">
+
+  <div style="flex-direction: row;display:flex;height: 10%;" >
+
+    <div id="star-icon"><img src="./assets/images/icon-star.svg"></div>
+    <text style="font-size: 2em;margin-left: 5px;">FAQs</text>
+  
+  </div>
+
+  <details open >
+    <summary>How do you specify size in HTML? <img src="./assets/images/icon-minus.svg"></summary>
+    In HTML, you can change the size of text with the font tag using the size attribute. The size attribute specifies how large a font will be displayed in either relative or absolute terms. Close the font tag with font to return to a normal text size
+  </details>
+  <details  >
+    <summary>What is data size in HTML? <img src="./assets/images/icon-plus.svg"></summary>
+    The size attribute defines the width of the input and the height of the select element. For the input , if the type attribute is text or password then it's the number of characters
+  </details>
+  <details  >
+    <summary>How do you give details in HTML?
+      <img src="./assets/images/icon-plus.svg"></summary>
+      The details tag is often used to create an interactive widget that the user can open and close. By default, the widget is closed. When open, it expands, and displays the content within. Any sort of content can be put inside the details tag.
+
+  </details>
+  <details  >
+    <summary>How do I change size of body in HTML?
+      <img src="./assets/images/icon-plus.svg"></summary>
+      If you set the width to 100% on the body element you will have a full page width. This is essentially equivalent to not setting a width value and allowing the default. If you want to use the body element as a smaller container and let the HTML element fill the page, you could set a max-width value on the body
+  </details>
+  <details  >
+    <summary>How to change font size?
+
+      <img src="./assets/images/icon-plus.svg"></summary>
+      Go to Settings application. Go to Accessibility. Choose the option Text and Display. Click on Font Size to adjust the size of the text using the slider provided.
+  </details>
+  <details  >
+    <summary>What is the size attribute in select tag?
+      <img src="./assets/images/icon-plus.svg"></summary>
+      The size attribute specifies the number of visible options in a drop-down list. If the value of the size attribute is greater than 1, but lower than the total number of options in the list, the browser will add a scroll bar to indicate that there are more options to view.
+
+  </details>
+</div>
+</div>
+
+<script>
+
+    let summaryElements = document.querySelectorAll('summary');
+
+    summaryElements.forEach(element => {
+
+      element.addEventListener('click',openClosedElement)
+      
+    });
+
+   
+
+    function openClosedElement(){
+
+      if(this.parentNode.hasAttribute('open')){
+
+        this.firstElementChild.src = "./assets/images/icon-plus.svg";
+
+        
+      }
+
+      else{
+
+      this.firstElementChild.src = "./assets/images/icon-minus.svg";
+
+      }
+
+      summaryElements.forEach(e=>{
+
+        
+
+        let imageElement = e.firstElementChild;
+
+        let details = e.parentNode;
+
+        
+       
+        if(details != this.parentNode){
+
+          details.removeAttribute('open')
+
+          imageElement.src = "./assets/images/icon-plus.svg";
+
+        }
+      })
+
+    }
+
+</script>
+
+
 </body>
 </html>
